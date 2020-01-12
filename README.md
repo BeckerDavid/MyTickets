@@ -29,7 +29,7 @@ Custom Validatoren:
 - Person.First_name und Person.Last_name darf keine Zahlen enthalten
 
 Externe Komponente:
-- Inputswitch in Person.internal (Ist Person aus eigener Company oder nicht?)
+- Inputswitch in Person.internal  (Boolean: Ist Person aus eigener Company oder nicht?)
 https://primefaces.org/primeng/#/inputswitch
 
 
