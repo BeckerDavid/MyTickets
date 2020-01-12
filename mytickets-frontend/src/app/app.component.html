@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <button mat-button [matMenuTriggerFor]="ticketMenu">Ticket</button>
+  <mat-menu #ticketMenu="matMenu">
+    <button mat-menu-item routerLink="ticket-list">List</button>
+    <button mat-menu-item routerLink="ticket-form">New</button>
+  </mat-menu>
+  <button mat-button [matMenuTriggerFor]="peopleMenu">People</button>
+  <mat-menu #peopleMenu="matMenu">
+    <button mat-menu-item routerLink="person-list">List</button>
+    <button mat-menu-item routerLink="person-form">New</button>
+  </mat-menu>
+  <app-logout></app-logout>
+</mat-toolbar>
+
+<router-outlet></router-outlet>

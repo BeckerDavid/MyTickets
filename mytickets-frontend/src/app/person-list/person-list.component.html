@@ -1,0 +1,32 @@
+<table mat-table [dataSource]="persons">
+  <ng-container matColumnDef="fullname">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let person">{{person.fullname}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="format_birthday">
+    <th mat-header-cell *matHeaderCellDef>Birthday</th>
+    <td mat-cell *matCellDef="let person">{{person.format_birthday}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="internal">
+    <th mat-header-cell *matHeaderCellDef>Internal</th>
+    <td mat-cell *matCellDef="let person">{{person.internal ? "Yes" : "No"}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="company_name">
+    <th mat-header-cell *matHeaderCellDef>Company</th>
+    <td mat-cell *matCellDef="let person">{{person.company_name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let person">
+      <button mat-button [routerLink]="'/person-form/' + person.id">Edit</button>
+      <button mat-button (click)="deletePerson(person)">Delete</button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

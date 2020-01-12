@@ -1,0 +1,48 @@
+<form [formGroup]="ticketFormGroup" class="ticket-form">
+
+  <mat-form-field>
+  <mat-select placeholder="Customer" formControlName="customer">
+    <mat-option [value]="companyOption.id" *ngFor="let companyOption of companyOptions">{{companyOption.name}}</mat-option>
+  </mat-select>
+  <mat-hint align="end">The customer of the ticket</mat-hint>
+</mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Title" formControlName="title" [required]="true">
+    <mat-hint align="end">The title of the ticket.</mat-hint>
+    <mat-error *ngIf="ticketFormGroup.controls.title.hasError('requred')">Title is required</mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="State" formControlName="state">
+      <mat-option [value]="state.key" *ngFor="let state of stateService.stateNames | keyvalue">{{state.value}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea  matInput [rows]="10" [cols]="60"  placeholder="Content" formControlName="content" [required]="true"></textarea>
+    <mat-hint align="end">The content of the ticket.</mat-hint>
+    <mat-error *ngIf="ticketFormGroup.controls.content.hasError('required')">
+      Content is required
+    </mat-error>
+    <mat-error *ngIf="ticketFormGroup.controls.content.hasError('lineFeed')">
+      Content contains line feed
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Contributors</mat-label>
+    <mat-select placeholder="Contributors" formControlName="contributor" multiple>
+      <!--<mat-select [formControl]="actorService" multiple>-->
+      <mat-option *ngFor="let person of personOptions" [value]="person.id">{{person.fullname}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!ticketFormGroup.valid" (click)="createTicket()">
+      <span *ngIf="!ticketFormGroup.controls.id.value">Create</span>
+      <span *ngIf="ticketFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>

@@ -1,0 +1,47 @@
+<form [formGroup]="personFormGroup" class="person-form">
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="First name" formControlName="first_name" [required]="true">
+    <mat-hint align="end">The first name of the person.</mat-hint>
+    <mat-error *ngIf="personFormGroup.controls.first_name.hasError('required')">
+      First name is required
+    </mat-error>
+    <mat-error *ngIf="personFormGroup.controls.first_name.hasError('number')">
+      First name should not contain a number
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="text" placeholder="Last name" formControlName="last_name" [required]="true">
+    <mat-hint align="end">The last name of the person.</mat-hint>
+    <mat-error *ngIf="personFormGroup.controls.last_name.hasError('required')">
+      Last name is required
+    </mat-error>
+    <mat-error *ngIf="personFormGroup.controls.last_name.hasError('number')">
+      Last name should not contain a number
+    </mat-error>
+  </mat-form-field>
+
+  <app-date placeholder="Birthday" formControlName="birthday" hint="The birthday of the person"
+            [required]="true"></app-date>
+
+  <p>Internal </p>
+  <p-inputSwitch formControlName="internal"></p-inputSwitch>
+  <!--<mat-checkbox formControlName="internal">Internal</mat-checkbox>-->
+  <br/>
+
+  <mat-form-field>
+    <mat-select placeholder="Company" formControlName="company">
+      <mat-option [value]="companyOption.id" *ngFor="let companyOption of companyOptions">{{companyOption.name}}</mat-option>
+    </mat-select>
+    <mat-hint align="end">The company of the person</mat-hint>
+  </mat-form-field>
+
+  <br/>
+  <mat-card-actions align="center">
+    <button mat-raised-button color="primary" [disabled]="!personFormGroup.valid" (click)="createPerson()">
+      <span *ngIf="!personFormGroup.controls.id.value">Create</span>
+      <span *ngIf="personFormGroup.controls.id.value">Update</span>
+    </button>
+  </mat-card-actions>
+</form>
