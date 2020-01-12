@@ -15,8 +15,8 @@ Umgesetzt sind 4 Models
 Unter myTickets/fixtures gibt es Beispieldaten
 Folgende Befehle daher nötig:
 
-python manage.py createsuperuser
-python manage.py loaddata myTickets/fixtures/initial_data.json
+- python manage.py createsuperuser
+- python manage.py loaddata myTickets/fixtures/initial_data.json
 
 
 Frontend:
